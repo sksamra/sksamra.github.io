@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>DSC106 - Project Saroop Samra</title>
+	<link href="https://fonts.googleapis.com/css?family=Montserrat|Paytone+One&display=swap" rel="stylesheet" />
+	<link href="./styles/style.css" rel="stylesheet" />
+
+	<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/timeline.js"></script>
+	<script src="https://code.highcharts.com/modules/data.js"></script>
+	<script src="https://code.highcharts.com/modules/series-label.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	<script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+
+	<script src="./scripts/main.js"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+	<section id="page0">
+		<a style="pointer-events: none; color:gray;" href="">Previous</a>
+		<a href="#page1">Next</a>
+		<img id="logo" src="images/logo.png" alt="logo image missing">
+		<h3>Introduction</h3>
+		<img id="titlepic" src="images/allthedoctors.jpg"></img>
+		<br>
+		<div id="intro"></div>
+		<summary>
+			Doctor Who is a British science fiction TV show produced by BBC. The show started in 1963 and stopped airing after 1996 (classical era). The show however, was rebooted in 
+			2005 and is still being produced today (new era). The show is about an alien named the Doctor from the Timelord race that are capable of regenerating. The Doctor travels in time and 
+			space in his/her ship, the TARDIS, which is disguised as a blue policebox. The Doctor has multiple companions from Earth that help him/her in defeating evil species.
+			<br>
+			<br>
+			In this article we will analyze the most popular Doctor of all time and their top 5 episodes.
+		</summary>
+	</section>
+	<br>
+	<div class="space"></div>
+
+	
+	<section id="page1">
+		<a href="#page0">Prev</a>
+		<a href="#page2">Next</a>
+		<h3>Episodes Titles</h3>
+		<br>
+		<summary>
+			Here we see the word clouds of each of the doctor's episode titles, which you are able to choose the actor of the doctor in the drop down menu. From this we 
+			can see how the classic era had more numbers in their episode titles as their episodes continued for multiple parts. In addition, Paul McGann
+			featured as the Doctor only in one movie which is why he doesn't have many words at all compared to others.
+		</summary>
+		<div style='text-align:center;'>
+			<select id="doctor_cloud_id" onchange="initializeCloudWords(doctor_data)">
+				<option value="1">William Hartnell</option>
+				<option value="2">Patrick Troughton</option>
+				<option value="3">Jon Pertwee</option>
+				<option value="4">Tom Baker</option>
+				<option value="5">Peter Davison</option>
+				<option value="6">Colin Baker</option>
+				<option value="7">Sylvester McCoy</option>
+				<option value="8">Paul McGann</option>
+				<option value="9">Christopher Eccelston</option>
+				<option value="10" selected>David Tennant</option>
+				<option value="11">Matt Smith</option>
+				<option value="12">Peter Capaldi</option>
+				<option value="13">Jodie Whittaker</option>
+			</select>
+		</div>
+		
+		<div id="word_cloud"></div>
+	</section>
+	<br>
+	<div class="space"></div>
+
+	<section id="page2">
+		<a href="#page1">Previous</a>
+		<a href="#page3">Next</a>
+		<h3>Meet The Actors</h3>
+		<summary>The chart below shows the timeline of the current 13 actors who have played the Doctor and their picture and information appears once you hover on top. You can also zoom in on this graph by dragging across. Next we will look at the timeline of the episodes themselves.</summary> <br> <br>
+		<div id="timeline"></div>
+	</section>
+	<div class="space"></div>
+
+	<section id="page3">
+		<a href="#page2">Previous</a>
+		<a href="#page4">Next</a>
+		<h3>The Seasons</h3>
+		<summary>The chart below shows the ratings of each year compared to its ratings and is divided by color depending on if it was from the classical or new era of Doctor Who. The details of the date and ratings as well as episode name and actor of the Doctor in that episode is shown when you hover over the line graph. </summary> <br> <br>
+		<div id="seasons"></div>
+	</section>
+	<div class="space"></div>
+
+	<section id="page4">
+		<a href="#page3">Previous</a>
+		<a href="#page5">Next</a>
+		<h3>Popularity and Episode Duration</h3>
+		<summary>The chart below compares each of the episode's duration in relation to their ratings, and is divided by color depending on if it was from the classical or new era of Doctor Who.
+			From this we see that new era episodes tend to be longer than the classical era. We should now analyze this chart by separating by each of the different doctors. </summary> <br> <br>
+		<div id="duration"></div>
+	</section>
+	<div class="space"></div>
+
+	<section id="page5">
+		<a href="#page4">Previous</a>
+		<a href="#page6">Next</a>
+		<h3>Doctor Popularity</h3>
+		<summary>The chart below is categorizes the previous chart depending on the Doctor number. By clicking the Details scroll, there is the option to see less data which represents each of the Doctor's average episode duration.
+			From this we can see that the 4th Doctor Tom Baker (classic) and the 10th Doctor David Tennant (new) have the highest average ranking for their episodes. [Note, excluding the 8th doctor as Paul McGann did not have episodes, only one movie].
+		Therefore we will compare Tom Baker and David Tennant to see who scores higher in terms of episode number and fan rating to see which is the most popular doctor.</summary> 
+		<label class="switch">
+			<input type="checkbox" checked onchange="showHideDetails()">
+			<span class="slider round"></span>
+		</label>
+		<span  >Details</span>
+			
+		<div id="doctors"></div>
+	</section>
+	<div class="space"></div>
+	
+	<section id="page6">
+		<a href="#page5">Previous</a>
+		<a href="#page7">Next</a>
+		<h3>Number of Episodes: Tom Baker vs David Tennant</h3>
+		<summary>The chart below shows the number of episodes of Tom Baker and David Tennant. Hover over each bar to see their picture. To understand which Doctor fans like better we should compare their fan ratings.</summary> 
+		<div id="comparison1"></div>
+	</section>
+	<div class="space"></div>
+
+	<section id="page7">
+		<a href="#page6">Previous</a>
+		<a href="#page8">Next</a>
+		<h3>Fan Popularity: Tom Baker vs David Tennant</h3>
+		<summary>The chart below shows the Fan Rating of Tom Baker and David Tennant from <a href="https://www.digitalspy.com/tv/cult/a852277/doctor-who-ranked-actors-doctors/">Digital Spy</a>. Hover over each to see their picture and their popularity rating out of 10.
+		David Tennant scored higher than Tom Baker in fan ratings so now let's look at a timeline of David Tennant's episodes. </summary> 
+		<div id="comparison2"></div>
+	</section>
+	<div class="space"></div>
+
+	<section id="page8">
+		<a href="#page7">Previous</a>
+		<a href="#page9">Next</a>
+		<h3>David Tennant's Episodes</h3>
+		<summary>
+			This chart is a timeline of David Tennant's episodes, if you hover over you can see a picture from that episode.
+			We can see three clusters which are his seasons (season 2, 3, 4). The episodes in between these are his Christmas specials. 
+			Next let's find out which of Tennant's episodes rate the highest.
+	 	</summary> 
+		<div id="tennatEpisodes"></div>
+	</section>
+	<div class="space"></div>
+
+	<section id="page9">
+		<a href="#page8">Previous</a>
+		<a href="#page10" onclick="playAudio()">Next</a>
+		<h3>David Tennant's episodes rating</h3>
+		<summary>This chart shows all David Tennant's episodes and their rating, and his top five episodes are highlighted in yellow.
+			The top four episodes are all Christmas specials with special guest stars and multiple companions, thus in conclusion christmas episodes with multiple featuring companions are most popular with the 10th Doctor, David Tennant, being the most popular doctor.
+	 	</summary> 
+		<div id="bestDoctorEpisodes"></div>
+	</section>
+	<div class="space"></div>
+
+	<section id="page10">
+		<a href="#page9" onclick="stopAudio()">Previous</a>
+		<h3>The Top 5 Doctor Who Episodes of All Time</h3>
+		
+		<div class="container"  style="width:65%;">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<li data-target="#myCarousel" data-slide-to="3"></li>
+				<li data-target="#myCarousel" data-slide-to="4"></li>
+			  </ol>
+		  
+			  <!-- Wrapper for slides -->
+			  <div class="carousel-inner">
+				<div class="item active">
+				<h3>#1. Voyage of the Dammned</h3>
+				  <img src="images/t1.jpg" alt="Los Angeles" style="width:100%;">
+				</div>
+		  
+				<div class="item">
+					<h3>#2. The Next Doctor</h3>
+					<img src="images/t2.jpg" alt="Chicago" style="width:100%;">
+				</div>
+			  
+				<div class="item">
+					<h3>#3. The End of Time: Part Two</h3>
+					<img src="images/t3.jpg" alt="New york" style="width:100%;">
+				</div>
+
+				<div class="item">
+					<h3>#4. The End of Time: Part One</h3>
+					<img src="images/t4.jpg" alt="New york" style="width:100%;">
+				</div>
+
+				<div class="item">
+					<h3>#5. Journeys End</h3>
+					<img src="images/t5.jpg" alt="New york" style="width:100%;">
+				</div>
+
+			  </div>
+		  
+			  <!-- Left and right controls -->
+			  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+				<span class="sr-only">Previous</span>
+			  </a>
+			  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+				<span class="sr-only">Next</span>
+			  </a>
+			</div>
+		  </div>
+
+		  <audio id="audio_clip" controls>
+			<source src="./data/theme.ogg" type="audio/ogg">
+		  </audio>
+		
+
+	</section>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<div class="space"></div>
+	
+</body>
+
+</html>
