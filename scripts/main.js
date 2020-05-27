@@ -312,7 +312,7 @@ function initializeSeasons(data) {
 		},
 		yAxis: {
 		  title: {
-			text: 'Ratings (Millions)'
+			text: 'Audience Viewership (Millions)'
 		  },
 		  lineWidth : 1,
 		},
@@ -406,7 +406,7 @@ function initializeDuration(data) {
 		},
 		yAxis: {
 		title: {
-			text: 'Ratings (millions)'
+			text: 'Audience Viewership (millions)'
 		}
 		},
 		legend: {
@@ -508,7 +508,7 @@ function initializeDoctors(data) {
 		},
 		yAxis: {
 			title: {
-				text: 'Ratings (millions)'
+				text: 'Audience Viewership (millions)'
 			}
 		},
 		legend: {
@@ -660,10 +660,7 @@ function initializeComparison1(data) {
 		enabled: false,
 	},
 	title: {
-		text: '',
-		align: 'center',
-		verticalAlign: 'middle',
-		y: 60
+		text: 'Number of Episodes',
 	},
 	legend: {
 		enabled:true,
@@ -728,9 +725,6 @@ function initializeComparison2(data) {
 	},
 	title: {
 		text: 'Fan Rating',
-		align: 'center',
-		verticalAlign: 'middle',
-		y: 60
 	},
 	subtitle: {
 		text: 'Info source: <a href="https://www.digitalspy.com/tv/cult/a852277/doctor-who-ranked-actors-doctors/">www.digitalspy.com</a>'
@@ -911,7 +905,7 @@ function initializeBestDoctorEpisodes(data) {
 
 		yAxis: {
 		  title: {
-			text: 'Ratings (Millions)'
+			text: 'Audience Viewership (Millions)'
 		  },
 		  lineWidth : 1,
 		},
