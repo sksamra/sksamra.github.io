@@ -57,13 +57,16 @@ h1, h3 {
     height:440px;
 }
 
-#comparison1 {
-    height:550px;
+.chart-parent--container {
+  display: flex;
 }
 
-#comparison2 {
-    height:550px;
+.chart--container {
+  height: 100%;
+  width: 100%;
+  min-height: 400px;
 }
+
 
 #recommend {
     width:100%;
