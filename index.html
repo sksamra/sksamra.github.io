@@ -54,9 +54,7 @@
 		<a href="#page2">Next</a>
 		<h3>Episodes Titles</h3>
 		<summary>
-			Here we see the word clouds of each of the doctor's episode titles, which you are able to choose the actor of the doctor in the drop down menu. From this we 
-			can see how the classic era had more numbers in their episode titles as their episodes continued for multiple parts. In addition, Paul McGann
-			featured as the Doctor only in one movie which is why he doesn't have many words at all compared to others.
+			Here we see the word clouds of each of the Doctor's episode titles.
 		</summary>
 		<div style='text-align:center;'>
 			<select id="doctor_cloud_id" onchange="initializeCloudWords(doctor_data)">
@@ -85,7 +83,9 @@
 		<a href="#page1">Previous</a>
 		<a href="#page3">Next</a>
 		<h3>Meet The Actors</h3>
-		<summary>The chart below shows the timeline of the current 13 actors who have played the Doctor and their picture and information appears once you hover on top. You can also zoom in on this graph by dragging across. Next we will look at the timeline of the episodes themselves.</summary> <br> <br>
+		<summary>
+			The chart below shows the timeline of the current 13 actors who have played the Doctor.
+		</summary> <br> <br>
 		<div id="timeline"></div>
 	</section>
 	<div class="space"></div>
@@ -94,7 +94,9 @@
 		<a href="#page2">Previous</a>
 		<a href="#page4">Next</a>
 		<h3>The Seasons</h3>
-		<summary>The chart below shows the audience viewership in relation to the year and is divided by color depending on if it was from the classical or new era of Doctor Who. The details of the date and audience viewership as well as episode name and actor of the Doctor in that episode is shown when you hover over the line graph. </summary> <br> <br>
+		<summary>
+			The chart below shows the audience viewership in relation to the year and is divided by color depending on if it was from the classical or new era of Doctor Who. 
+		</summary> <br> <br>
 		<div id="seasons"></div>
 	</section>
 	<div class="space"></div>
@@ -103,8 +105,9 @@
 		<a href="#page3">Previous</a>
 		<a href="#page5">Next</a>
 		<h3>Popularity and Episode Duration</h3>
-		<summary>The chart below compares each of the episode's duration in relation to their audience viewership, and is divided by color depending on if it was from the classical or new era of Doctor Who.
-			From this we see that new era episodes tend to be longer than the classical era. We should now analyze this chart by separating by each of the different doctors. </summary> <br> <br>
+		<summary>
+			The chart below compares each of the episode's duration in relation to their audience viewership, and is divided by color depending on if it was from the classical or new era of Doctor Who.
+		</summary> <br> <br>
 		<div id="duration"></div>
 	</section>
 	<div class="space"></div>
@@ -113,9 +116,9 @@
 		<a href="#page4">Previous</a>
 		<a href="#page6">Next</a>
 		<h3>Doctor Popularity</h3>
-		<summary>The chart below is categorizes the previous chart depending on the Doctor number. By clicking the Details scroll, there is the option to see less data which represents each of the Doctor's average episode duration.
-			From this we can see that the 4th Doctor Tom Baker (classic) and the 10th Doctor David Tennant (new) have the highest average ranking for their episodes. [Note, excluding the 8th doctor as Paul McGann did not have episodes, only one movie].
-		Therefore we will compare Tom Baker and David Tennant to see who scores higher in terms of episode number and fan rating to see which is the most popular doctor.</summary> 
+		<summary>
+			The chart below is categorizes the previous chart depending on the Doctor number. There is the option to see less data which represents each of the Doctor's average episode duration with the Details scroll.
+		</summary> 
 		<label class="switch">
 			<input type="checkbox" checked onchange="showHideDetails()">
 			<span class="slider round"></span>
@@ -128,21 +131,26 @@
 	
 
 
-	<a id="page6" href="#page5">Previous</a>
+	<section id="page6">
+	<a href="#page5">Previous</a>
 	<a href="#page7">Next</a>
 	<h3>Tom Baker vs David Tennant</h3>
-	<section class="chart-parent--container">
-		<section id="page6_1" class="chart--container">
-			<summary>The chart below shows the number of episodes of Tom Baker and David Tennant. Hover over each bar to see their picture. To understand which Doctor fans like better we should compare their fan ratings.</summary> 
-			<div id="comparison1"></div>
-		</section>
-		<section id="page6_2" class="chart--container">
-			<summary>The chart below shows the Fan Rating of Tom Baker and David Tennant from <a href="https://www.digitalspy.com/tv/cult/a852277/doctor-who-ranked-actors-doctors/">Digital Spy</a>. Hover over each to see their picture and their popularity rating out of 10.
-			David Tennant scored higher than Tom Baker in fan ratings so now let's look at a timeline of David Tennant's episodes. </summary> 
-			<div id="comparison2"></div>
+		<section class="chart-parent--container">
+			<section id="page6_1" class="chart--container">
+				<summary>
+					The chart below shows the number of episodes of Tom Baker and David Tennant.
+				</summary> 
+				<div id="comparison1"></div>
+			</section>
+			<section id="page6_2" class="chart--container">
+				<summary>
+					The chart below shows the fan rating of Tom Baker and David Tennant from <a href="https://www.digitalspy.com/tv/cult/a852277/doctor-who-ranked-actors-doctors/">Digital Spy</a>. 
+				</summary> 
+				<div id="comparison2"></div>
+			</section>
 		</section>
 	</section>
-
+	
 	<div class="space"></div>
 
 
@@ -151,9 +159,7 @@
 		<a href="#page8">Next</a>
 		<h3>David Tennant's Episodes</h3>
 		<summary>
-			This chart is a timeline of David Tennant's episodes, if you hover over you can see a picture from that episode.
-			We can see three clusters which are his seasons (season 2, 3, 4). The episodes in between these are his Christmas specials. 
-			Next let's find out which of Tennant's episodes rate the highest.
+			This chart is a timeline of David Tennant's episodes from his seasons (2, 3, 4).
 	 	</summary> 
 		<div id="tennatEpisodes"></div>
 	</section>
@@ -162,9 +168,9 @@
 	<section id="page8">
 		<a href="#page7">Previous</a>
 		<a href="#page9" onclick="playAudio()">Next</a>
-		<h3>David Tennant's episodes rating</h3>
-		<summary>This chart shows all David Tennant's episodes and their rating, and his top five episodes are highlighted in yellow.
-			The top four episodes are all Christmas specials with special guest stars and multiple companions, thus in conclusion christmas episodes with multiple featuring companions are most popular with the 10th Doctor, David Tennant, being the most popular doctor.
+		<h3>David Tennant's Episode Ratings</h3>
+		<summary>
+			This chart shows all David Tennant's episodes and their rating, and his top five episodes are highlighted in yellow.	
 	 	</summary> 
 		<div id="bestDoctorEpisodes"></div>
 	</section>
@@ -174,7 +180,7 @@
 		<a href="#page8" onclick="stopAudio()">Previous</a>
 		<h3>The Top 5 Doctor Who Episodes of All Time</h3>
 		<summary>In conclusion, David Tennant is the most popular doctor based on the audience viewership and his fan ratings.
-			So here is his top 5 episodes based on the previous episode ratings chart!
+			So here is his top 5 episodes!
 		</summary> <br> <br>
 		
 		<div class="container"  style="width:45%;">
