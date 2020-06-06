@@ -492,10 +492,10 @@ function initializeDoctors(data) {
 			enabled: false,
 		},
 		title: {
-		text: 'Doctor Popularity and Average Episode Duration'
+			text: 'Doctor Popularity and Average Episode Duration'
 		},
 		subtitle: {
-		text: ''
+			text: ''
 		},
 		xAxis: {
 			title: {
@@ -522,35 +522,33 @@ function initializeDoctors(data) {
 		plotOptions: {
 		scatter: {
 			marker: {
-			radius: 5,
-			states: {
+				radius: 5,
+				states: {
+					hover: {
+						enabled: true,
+						lineColor: 'rgb(100,100,100)'
+					}
+				}
+				},
+				states: {
 				hover: {
-				enabled: true,
-				lineColor: 'rgb(100,100,100)'
+					marker: {
+					enabled: false
+					}
 				}
-			}
-			},
-			states: {
-			hover: {
-				marker: {
-				enabled: false
+				},
+				tooltip: {
+					headerFormat: '<b>{series.name}</b><br>',
+					pointFormat: 'Duration: {point.x} mins,<br> Viewers: {point.y} Million'
 				}
-			}
-			},
-			tooltip: {
-				headerFormat: '<b>{series.name}</b><br>',
-				pointFormat: 'Duration: {point.x} mins,<br> Viewers: {point.y} Million'
-			}
 		}
 		},
 		series: [{
 			name: '1. William Hartnell',
-			color: 'rgba(223, 83, 83, .5)',
-			data: []
+			data: [],
 		}, 
 		{
 			name: '2. Patrick Troughton',
-			color: 'rgba(119, 152, 191, .5)',
 			data: []
 		},
 		{
@@ -559,7 +557,8 @@ function initializeDoctors(data) {
 		},
 		{
 			name: '4. Tom Baker',
-			data: []
+			data: [],
+			color: 'red'
 		},
 		{
 			name: '5. Peter Davison',
@@ -585,7 +584,8 @@ function initializeDoctors(data) {
 		},
 		{
 			name: '10. David Tennant',
-			data: []
+			data: [],
+			color: 'blue'
 		},
 
 		{
@@ -601,6 +601,29 @@ function initializeDoctors(data) {
 			name: '13. Jodie Whittaker',
 			data: []
 		},
+
+		// Put Thumbnails for Doctor 4 and 10
+		{
+			name: '',
+			// Only Show this in summary mode
+			data: show_details ? [[26,10]] : [],
+			showInLegend : false, // Dont show in Legend
+			enableMouseTracking : false, // Dont show Tooltip
+			marker: {
+				symbol: show_details ? 'url(images/s4.jpg)' : '',
+			}
+		},
+		{
+			name: '',
+			// Only Show this in summary mode
+			data: show_details ? [[51,9]] : [],
+			showInLegend : false, // Dont show in Legend
+			enableMouseTracking : false, // Dont show Tooltip
+			marker: {
+				symbol: show_details ? 'url(images/s10.jpg)' : '',
+			}
+		},
+
 		]
 	});
 
@@ -631,7 +654,6 @@ function initializeDoctors(data) {
 		for(i=1; i<=13; ++i) {
 			scatter2.series[i-1].setData(doctors_summary[i])
 		}
-		//scatter2.renderer.image('images/d4.jpg', 0,0, 30, 30).add();   
 	}
 	else {
 		for(i=1; i<=13; ++i) {
@@ -686,13 +708,13 @@ function initializeComparison1(data) {
 
 	series: [
 		{
-		type: 'column',
-		name: 'Tom Baker',
-		innerSize: '50%',
-		data: [
-			['Tom Baker', 69],
-		],
-		color : 'rgba(223, 83, 83, 1)'
+			type: 'column',
+			name: 'Tom Baker',
+			innerSize: '50%',
+			data: [
+				['Tom Baker', 69],
+			],
+			color : 'rgba(223, 83, 83, 1)'
 		},
 		{
 			type: 'column',
