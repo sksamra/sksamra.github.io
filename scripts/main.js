@@ -356,7 +356,28 @@ function initializeSeasons(data) {
 							'<br>' + doctorNames[doctorNumbers[point.x]] + 
 							'<br>' + point.y + ' Million</b>';						}
 				}
-		}],
+			},
+
+			{
+				name: "Film",
+				color : 'purple', 
+				data: [],
+				marker: {
+					radius: 10,
+				},
+				tooltip: {
+						useHTML:true,
+						width:100,
+						pointFormatter: function() {
+							var point = this;
+							return '<b>' + episodeTitles[point.x] + '<br>' + 
+							'<br>' + doctorNames[doctorNumbers[point.x]] + 
+							'<br>' + point.y + ' Million</b>';						
+						}
+				}
+			},
+
+		],
 	  });
 
 
@@ -376,6 +397,12 @@ function initializeSeasons(data) {
 	seasons.series[0].setData(classic);
 	seasons.series[1].setData(newEpisodes);
 
+	film = [];
+	episode_date = Date.parse("1996/5/27");
+	film.push([episode_date, 9080000/1000000]);
+	episodeTitles[episode_date] = 'Doctor Who The Movie';
+	doctorNumbers[episode_date] = 8;
+	seasons.series[2].setData(film);
 }
 
 function initializeDuration(data) {
