@@ -46,7 +46,7 @@ function init() {
 
 function initializeTimeline() {
 
-	// Cite: 
+	// Cite: https://www.highcharts.com/docs/chart-and-series-types/timeline-series/
 	timeline = Highcharts.chart('timeline', {
 	    chart: {
 	        zoomType: 'x',
