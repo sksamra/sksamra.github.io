@@ -1,25 +1,36 @@
 
-// Some little helpers
-const log = msg => (DEBUG ? console.log(msg) : '');
-const select = id => document.getElementById(id);
 
+// Global variables used to capture data from JSON (doctor_who.json)
 var doctor_data  = [];
+// This is data from JSON of image names for 10th Doctor (tennant_images.json)
 var images_data = []
+// This is dictonary (key is Date) and value is episode titles for 10th Doctor
 var episodeTitles = {}
+// This is dictonary (key is Date) and value is doctor number
 var doctorNumbers = {};
+// This is array of Doctor Names in order
 var doctorNames = ["", "William Hartnell", "Patrick Troughton", "Jon Pertwee", "Tom Baker",
 "Peter Davison", "Colin Baker", "Sylvester McCoy", "Paul McGann", "Christopher Eccelston",
 "David Tennant", "Matt Smith", "Peter Capaldi", "Jodie Whittaker"];
 
+// Cite: Code from HW to load JSON files
+// Some little helpers (from the HW code)
+const log = msg => (DEBUG ? console.log(msg) : '');
+// Some little helpers (from the HW code)
+const select = id => document.getElementById(id);
 async function loadJSON(path) {
 	let response = await fetch(path);
 	let dataset = await response.json(); // Now available in global scope
 	return dataset;
 }
 
+// Function to call when document loaded
 function init() {
+	// Ask JSON to be loaded
 	doctorPromise = loadJSON('./data/doctor_who.json');
+	// When it is loaded then call this function
 	doctorPromise.then(function (data) {
+		// Store the data in doctor_data gloval variable
 		doctor_data = data;
 		initializeCloudWords(data);
 		initializeSeasons(data);
@@ -30,16 +41,16 @@ function init() {
 		initializeBestDoctorEpisodes(data);
 	}); 
 
+	// Ask load JSON to be loaded
 	doctorImages = loadJSON('./data/tennant_images.json');
+	// When it is loaded then call this function
 	doctorImages.then(function (data) {
 		images_data = data["File"];
 		initializeTennatImages(images_data);
 	}); 
 	
-	
+	// Timeline can be initialized immediatley as it doesnt need data from JSON
 	initializeTimeline();
-	
-	
 }
 
 
@@ -282,10 +293,8 @@ function initializeCloudWords(data) {
 
 
 function initializeSeasons(data) {
+	// Cite: https://www.highcharts.com/demo/line-basic
 	seasons = Highcharts.chart('seasons', {
-		chart: {
-			type: 'scatter'
-		},
 		title: {
 		  text: 'Historical Ratings'
 		},
@@ -381,6 +390,8 @@ function initializeSeasons(data) {
 	  });
 
 
+	// This code collects the data for the series: classic, new and film using the data from JSON
+
 	let classic = [];
 	let newEpisodes = [];
 	episodeTitles = {}
@@ -406,10 +417,11 @@ function initializeSeasons(data) {
 }
 
 function initializeDuration(data) {
+	// Cite: https://www.highcharts.com/demo/scatter
 	scatterplot = Highcharts.chart('duration', {
 		chart: {
-		type: 'scatter',
-		zoomType: 'xy'
+			type: 'scatter',
+			zoomType: 'xy'
 		},
 		// Dont show menu
 		exporting: {
@@ -482,6 +494,7 @@ function initializeDuration(data) {
 		}]
 	});
 
+	// Populate the data for the series
 	let classic = [];
 	for (datum of data) {
 		if(datum['Era']=='Classic')
@@ -506,10 +519,11 @@ var doctors_summary;
 var show_details = false;
 
 function initializeDoctors(data) {
+	// Cite: https://www.highcharts.com/demo/scatter
 	scatter2 = Highcharts.chart('doctors', {
 		chart: {
-		type: 'scatter',
-		zoomType: 'xy'
+			type: 'scatter',
+			zoomType: 'xy'
 		},
 		// Dont show menu
 		exporting: {
@@ -654,28 +668,34 @@ function initializeDoctors(data) {
 		]
 	});
 
+	// Create Data for two cases: Details vs Summary
 	doctors_summary = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[],13:[]};
 	var mins = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 	var ratings = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 	var total = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+	// Summary : Find the totals
 	for (datum of data) {
 		mins[datum['Doctor']] += datum['Minutes'];
 		ratings[datum['Doctor']] += datum['Rating'];
-		total[datum['Doctor']] += 1;
+		total[datum['Doctor']] += 1; 
 	}
+	// Summary : Now find averages
 	for(i=1; i<=13; ++i) {
 		avg_min = (mins[i]/total[i]).toFixed(2);
 		avg_rating = (ratings[i]/(total[i]*1000000)).toFixed(2);
 		doctors_summary[i].push([parseFloat(avg_min), parseFloat(avg_rating)]);
 	}
 
-
+	// Details, for each item in JSON
 	doctors_details = {1:[],2:[],3:[],4:[],5:[],6:[],7:[],8:[],9:[],10:[],11:[],12:[],13:[]};
 	for (datum of data) {
 		doctors_details[datum['Doctor']].push([Math.round(datum['Minutes']), datum['Rating']/1000000 ]);
 	}
 
+	// Toggle the show details 
 	show_details = !show_details;	
+	// If its not show details then set the data in the series from summary
 	if(!show_details) 
 	{
 		for(i=1; i<=13; ++i) {
@@ -683,6 +703,7 @@ function initializeDoctors(data) {
 		}
 	}
 	else {
+		// If it is show details then set the data in the series from details
 		for(i=1; i<=13; ++i) {
 			scatter2.series[i-1].setData(doctors_details[i])
 		}
@@ -690,11 +711,14 @@ function initializeDoctors(data) {
 
 }
 
+// This gets called when checkbox is changed
 function showHideDetails() {
 	initializeDoctors(doctor_data);
 }
 
 function initializeComparison1(data) {
+	// Bar Chart
+	// Cite: https://www.highcharts.com/demo/column-drilldown
 	Highcharts.chart('comparison1', {
 	  chart: {
 	    plotBackgroundColor: null,
@@ -759,6 +783,8 @@ function initializeComparison1(data) {
 
 
 function initializeComparison2(data) {
+	// Pie Chart
+	// Cite: https://www.highcharts.com/demo/pie-semi-circle
 	Highcharts.chart('comparison2', {
 	  chart: {
 	    plotBackgroundColor: null,
@@ -792,21 +818,21 @@ function initializeComparison2(data) {
 	},
 
 	plotOptions: {
-	pie: {
-		dataLabels: {
-		enabled: true,
-		distance: -50,
-		style: {
-			fontWeight: 'bold',
-			color: 'white'
+		pie: {
+			dataLabels: {
+			enabled: true,
+			distance: -50,
+			style: {
+				fontWeight: 'bold',
+				color: 'white'
+			}
+			},
+			startAngle: -90,
+			endAngle: 90,
+			center: ['50%', '75%'],
+			size: '110%',
+			colors : ['rgba(223, 83, 83, 1)', 'rgba(119, 152, 191, 1.0)']
 		}
-		},
-		startAngle: -90,
-		endAngle: 90,
-		center: ['50%', '75%'],
-		size: '110%',
-		colors : ['rgba(223, 83, 83, 1)', 'rgba(119, 152, 191, 1.0)']
-	}
 	},
 	series: [{
 		type: 'pie',
@@ -823,7 +849,7 @@ function initializeComparison2(data) {
 
 
 function initializeTennatImages(images_data) {
-	// Cite: 
+	// Cite: https://www.highcharts.com/docs/chart-and-series-types/timeline-series/
 	timeline2 = Highcharts.chart('tennatEpisodes', {
 	    chart: {
 	        zoomType: 'x',
@@ -883,10 +909,13 @@ function initializeTennatImages(images_data) {
 
 	episode_data = []
 
+	// Collect the data for the series
 	let bestDoctorShows = [];
 	for (datum of doctor_data) {
+		// Only care about 10th doctor
 		if (datum['Doctor']==10) 
 		{
+			// Add data which is : Date, episode, image etc
 			episode_data.push({
 				x: Date.parse(datum['Date']),
 				name: '',
@@ -901,13 +930,14 @@ function initializeTennatImages(images_data) {
 	}
 
 	
-
+	// Set the data for series
 	timeline2.series[0].setData(episode_data)
 	
 }
 
 function initializeBestDoctorEpisodes(data) {
 
+	// Get all episodes of Doctor 10 into array
 	let bestDoctorShows = [];
 	for (datum of data) {
 		if (datum['Doctor']==10) {
@@ -924,11 +954,13 @@ function initializeBestDoctorEpisodes(data) {
 		return 0;
 	}); 
 
+	// Titles of the shows put into titles array
 	let titles = [];
 	for(i=0; i<bestDoctorShows.length; ++i) {
 		titles.push(bestDoctorShows[i][0]);
 	}
 	
+	// Cite: https://www.highcharts.com/demo/column-basic
 	bestDoctor = Highcharts.chart('bestDoctorEpisodes', {
 		chart: {
 			type: 'column'
@@ -983,26 +1015,30 @@ function initializeBestDoctorEpisodes(data) {
 	  });
 
 
-	  bestDoctor.series[0].setData(bestDoctorShows);
+	// Set the data (sorted shows)
+	bestDoctor.series[0].setData(bestDoctorShows);
 
-	// Add the top 5 episodes
-	bestDoctor.series[0].addPoint({ color: "gold", x:0, y: 13.31, name:"The Next Doctor"});
-	bestDoctor.series[0].addPoint({ color: "gold", x:1, y: 13.1, name:"The Next Doctor"});
+	// Add the top 5 episodes - these are added are gold (done manually)
+	bestDoctor.series[0].addPoint({ color: "gold", x:0, y: 13.31, name:"Voyage of the Damned"});
+	bestDoctor.series[0].addPoint({ color: "gold", x:1, y: 13.1,  name:"The Next Doctor"});
 	bestDoctor.series[0].addPoint({ color: "gold", x:2, y: 12.27, name:"The End of Time : Part Two"});
 	bestDoctor.series[0].addPoint({ color: "gold", x:3, y: 12.04, name:"The End of Time : Part One"});
 	bestDoctor.series[0].addPoint({ color: "gold", x:4, y: 10.57, name:"Journeys End"});
 	
 }
 
+// This plays/stops the audio
 function playAudio() {
+	// Find the DIV audio_clip, and then play
 	audio = document.getElementById("audio_clip");
 	audio.play();
 }
 
 function stopAudio() {
+	// Find the DIV audio_clip, and then pause
 	audio = document.getElementById("audio_clip");
 	audio.pause();
 }
 
-
+// Once the document is loaded then call init
 document.addEventListener('DOMContentLoaded', init, false);
